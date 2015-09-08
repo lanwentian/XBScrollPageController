@@ -35,7 +35,7 @@
 
 @property (nonatomic,strong) UIView *selectionIndicator;  /**< 选择指示器  */
 
-
+@property (nonatomic,strong) NSMutableDictionary *frameCaches;    /**< size缓存  */
 
 @end
 
@@ -55,6 +55,14 @@
         _viewControllersCaches = [NSMutableDictionary dictionaryWithCapacity:0];
     }
     return _viewControllersCaches;
+}
+
+- (NSMutableDictionary *)frameCaches
+{
+    if (!_frameCaches) {
+        _frameCaches = [NSMutableDictionary dictionaryWithCapacity:0];
+    }
+    return _frameCaches;
 }
 
 #pragma - mark getter&setter
@@ -167,7 +175,6 @@
     self.tagViewSectionInset = UIEdgeInsetsZero;
     self.tagItemSectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
     self.tagItemSize = CGSizeZero;
-    _selectedIndex = [NSIndexPath indexPathForItem:0 inSection:0];
 }
 
 
@@ -236,7 +243,8 @@
 {
     [super viewDidAppear:animated];
     if (self.tagTitleModelArray.count != 0) {
-        [self collectionView:self.tagCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+        self.selectedIndex = [NSIndexPath indexPathForItem:0 inSection:0];
+        [self collectionView:self.tagCollectionView didSelectItemAtIndexPath:self.selectedIndex];
     }
 }
 
@@ -267,6 +275,8 @@
             [self collectionView:collectionView willDisplayCell:cell forItemAtIndexPath:indexPath];
         }
         
+        [self saveCachedFrame:cell.frame ByIndexPath:indexPath];
+        
         XBTagTitleModel *tagTitleModel = self.tagTitleModelArray[index];
         cell.tagTitleModel = tagTitleModel;
         cell.backgroundColor = self.backgroundColor;
@@ -291,10 +301,18 @@
     NSInteger index = indexPath.item;
     if ([self isTagView:collectionView]) {     //标签
         if (CGSizeEqualToSize(CGSizeZero, self.tagItemSize)) {      //如果用户没有手动设置tagItemSize
+            
+            CGRect cellFrameCache;
+            //先取缓存,没有才计算
+            cellFrameCache = [self getCachedFrameByIndexPath:indexPath];
+            if (!CGRectEqualToRect(cellFrameCache, CGRectZero)) { //有缓存
+                return cellFrameCache.size;
+            }
+            
             XBTagTitleModel *tagTitleModel = self.tagTitleModelArray[index];
             NSString *title = tagTitleModel.tagTitle;
-            CGSize titleSize = [self sizeForTitle:title withFont:tagTitleModel.normalTitleFont];
-            return CGSizeMake(titleSize.width + self.tagItemSectionInset.right + self.tagItemSectionInset.left, self.tagViewHeight);
+            CGSize titleSize = [self sizeForTitle:title withFont:((tagTitleModel.normalTitleFont.pointSize >= tagTitleModel.selectedTitleFont.pointSize)?tagTitleModel.normalTitleFont:tagTitleModel.selectedTitleFont)];
+            return CGSizeMake(titleSize.width + self.tagItemSectionInset.right + self.tagItemSectionInset.left, self.tagViewHeight);;
         }else
         {
             return self.tagItemSize;
@@ -314,6 +332,7 @@
         [self updateSelectionIndicatorWithOldSelectedIndex:self.selectedIndex
                                             newNSIndexPath:indexPath];
         self.selectedIndex = indexPath;
+
         [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
         [self.pageCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionRight animated:NO];
         
@@ -384,7 +403,6 @@
         [self saveCachedVC:cachedViewController ByIndexPath:indexPath];
         [self addChildViewController:cachedViewController];
         [cell configCellWithController:cachedViewController];
-        XBLog(@"%@",cachedViewController);
         
         }
 }
@@ -472,11 +490,24 @@
 
 }
 
+- (void)saveCachedFrame:(CGRect)frame ByIndexPath:(NSIndexPath *)indexPath
+{
+    [self.frameCaches setObject:[NSValue valueWithCGRect:frame] forKey:@(indexPath.item)];
+}
+
+- (CGRect)getCachedFrameByIndexPath:(NSIndexPath *)indexPath
+{
+    NSValue *frameValue = [self.frameCaches objectForKey:@(indexPath.item)];
+    return [frameValue CGRectValue];
+}
+
+
 - (void)dealloc
 {
     [self.graceTimer invalidate];
     self.graceTimer = nil;
 }
+
 
 - (void)updateViewControllersCaches
 {
@@ -508,29 +539,25 @@
 - (void)updateSelectionIndicatorWithOldSelectedIndex:(NSIndexPath *)oldSelectedIndex
                                       newNSIndexPath:(NSIndexPath *)newSelectedIndex
 {
-    XBTagTitleCell *oldCell = (XBTagTitleCell *)[self.tagCollectionView cellForItemAtIndexPath:oldSelectedIndex];
-    XBTagTitleCell *newCell = (XBTagTitleCell *)[self.tagCollectionView cellForItemAtIndexPath:newSelectedIndex];
+    CGRect oldFrame = [self getCachedFrameByIndexPath:oldSelectedIndex];
+    CGRect oldf = oldFrame;
+    oldf.size.height = 2;
+    oldf.origin.y = self.tagViewHeight - 2;
+    oldFrame = oldf;
     
-    CGRect oldFrame = oldCell.frame;
-    oldFrame.size.height = kSelectionIndicatorHeight;
-    oldFrame.origin.y = self.tagViewHeight - kSelectionIndicatorHeight;
-    CGRect newFrame = newCell.frame;
-    newFrame.size.height = kSelectionIndicatorHeight;
-    newFrame.origin.y = self.tagViewHeight - kSelectionIndicatorHeight;
-    
-    CGPoint oldCenter = oldCell.center;
-    oldCenter.y = oldFrame.origin.y + kSelectionIndicatorHeight * 0.5;
-    CGPoint newCenter = newCell.center;
-    newCenter.y = newFrame.origin.y + kSelectionIndicatorHeight * 0.5;
+    CGRect newFrame = [self getCachedFrameByIndexPath:newSelectedIndex];
+    CGRect newf = newFrame;
+    newf.size.height = 2;
+    newf.origin.y = self.tagViewHeight - 2;
+    newFrame = newf;
+
 
     self.selectionIndicator.frame = oldFrame;
-    self.selectionIndicator.center = oldCenter;
 
     
     
     [UIView animateWithDuration:0.2 animations:^{
         self.selectionIndicator.frame = newFrame;
-        self.selectionIndicator.center = newCenter;
     }];
     
 }
