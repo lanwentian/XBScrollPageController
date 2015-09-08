@@ -277,9 +277,6 @@
             [self collectionView:collectionView willDisplayCell:cell forItemAtIndexPath:indexPath];
         }
 
-
-
-
         return cell;
         
     }
