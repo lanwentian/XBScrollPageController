@@ -37,8 +37,6 @@
     
     NSArray *classNames = @[@"TestViewController"];
     
-    titleArray = nil;
-    classNames = nil;
 
     self = [super initWithTitles:titleArray andSubViewdisplayClassNames:classNames andTagViewHeight:49];
     if (self) {
@@ -108,9 +106,7 @@
     
     NSArray *classNames = @[@"TestViewController"];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self scrollToTagByIndex:6];
-    });
+
 
 }
 
