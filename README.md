@@ -79,6 +79,7 @@ iOS分页控制器,只需传入标题数组和控制器类名数组即可.
 ###public方法:
 * scrollToTagByIndex:(NSInteger)index: 根据索引值设置滚动到某个tag,**注意索引值不要超过初始化时设置的tag数组长度,否则会造成数组越界崩溃**
 * reloadDataWith:(NSArray *)titleArray andSubViewdisplayClassNames:(NSArray *)classNames: 刷新整个界面,提供给某些应用场景比如从服务器获取tag组后需要更新界面.
-* ##问题反馈
+* 
+##问题反馈
 QQ:329735967
 email:329735967@qq.com
