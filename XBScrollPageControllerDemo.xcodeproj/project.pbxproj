@@ -450,7 +450,7 @@
 				INFOPLIST_FILE = XBScrollPageControllerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = XBScrollPageControllerDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XBScrollPageController.app/XBScrollPageController";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XBScrollPageControllerDemo.app/XBScrollPageController";
 			};
 			name = Debug;
 		};
@@ -465,7 +465,7 @@
 				INFOPLIST_FILE = XBScrollPageControllerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = XBScrollPageControllerDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XBScrollPageController.app/XBScrollPageController";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XBScrollPageControllerDemo.app/XBScrollPageController";
 			};
 			name = Release;
 		};
