@@ -12,7 +12,6 @@
 		1F46B39A19BB3A95008BC480 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B39919BB3A95008BC480 /* ViewController.m */; };
 		1F46B39F19BB3A95008BC480 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F46B39E19BB3A95008BC480 /* Images.xcassets */; };
 		1F46B3A219BB3A95008BC480 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F46B3A019BB3A95008BC480 /* LaunchScreen.xib */; };
-		1F46B3AE19BB3A95008BC480 /* XBScrollPageControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B3AD19BB3A95008BC480 /* XBScrollPageControllerTests.m */; };
 		1F46B3C01B9C7981008BC480 /* XBScrollPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B3BD1B9C7981008BC480 /* XBScrollPageController.m */; };
 		1F46B3C41B9C800C008BC480 /* XBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B3C31B9C800C008BC480 /* XBConst.m */; };
 		1F46B3C71B9C8506008BC480 /* XBTagTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B3C61B9C8506008BC480 /* XBTagTitleModel.m */; };
@@ -21,16 +20,6 @@
 		1F46B3D01B9C905F008BC480 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B3CF1B9C905F008BC480 /* TestViewController.m */; };
 		1F46B3D51B9D267B008BC480 /* navigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B3D41B9D267B008BC480 /* navigationViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		1F46B3A819BB3A95008BC480 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1F46B38619BB3A95008BC480 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1F46B38D19BB3A95008BC480;
-			remoteInfo = XBScrollPageController;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1F46B38E19BB3A95008BC480 /* XBScrollPageControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XBScrollPageControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,7 +31,6 @@
 		1F46B39919BB3A95008BC480 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1F46B39E19BB3A95008BC480 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1F46B3A119BB3A95008BC480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		1F46B3A719BB3A95008BC480 /* XBScrollPageControllerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XBScrollPageControllerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F46B3AC19BB3A95008BC480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F46B3AD19BB3A95008BC480 /* XBScrollPageControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBScrollPageControllerTests.m; sourceTree = "<group>"; };
 		1F46B3BC1B9C7981008BC480 /* XBScrollPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBScrollPageController.h; sourceTree = "<group>"; };
@@ -69,13 +57,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F46B3A419BB3A95008BC480 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -92,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				1F46B38E19BB3A95008BC480 /* XBScrollPageControllerDemo.app */,
-				1F46B3A719BB3A95008BC480 /* XBScrollPageControllerDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,24 +191,6 @@
 			productReference = 1F46B38E19BB3A95008BC480 /* XBScrollPageControllerDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1F46B3A619BB3A95008BC480 /* XBScrollPageControllerDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1F46B3B419BB3A95008BC480 /* Build configuration list for PBXNativeTarget "XBScrollPageControllerDemoTests" */;
-			buildPhases = (
-				1F46B3A319BB3A95008BC480 /* Sources */,
-				1F46B3A419BB3A95008BC480 /* Frameworks */,
-				1F46B3A519BB3A95008BC480 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1F46B3A919BB3A95008BC480 /* PBXTargetDependency */,
-			);
-			name = XBScrollPageControllerDemoTests;
-			productName = XBScrollPageControllerTests;
-			productReference = 1F46B3A719BB3A95008BC480 /* XBScrollPageControllerDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,10 +202,6 @@
 				TargetAttributes = {
 					1F46B38D19BB3A95008BC480 = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					1F46B3A619BB3A95008BC480 = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = 1F46B38D19BB3A95008BC480;
 					};
 				};
 			};
@@ -261,7 +219,6 @@
 			projectRoot = "";
 			targets = (
 				1F46B38D19BB3A95008BC480 /* XBScrollPageControllerDemo */,
-				1F46B3A619BB3A95008BC480 /* XBScrollPageControllerDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -273,13 +230,6 @@
 			files = (
 				1F46B3A219BB3A95008BC480 /* LaunchScreen.xib in Resources */,
 				1F46B39F19BB3A95008BC480 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1F46B3A519BB3A95008BC480 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,23 +253,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F46B3A319BB3A95008BC480 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1F46B3AE19BB3A95008BC480 /* XBScrollPageControllerTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		1F46B3A919BB3A95008BC480 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1F46B38D19BB3A95008BC480 /* XBScrollPageControllerDemo */;
-			targetProxy = 1F46B3A819BB3A95008BC480 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1F46B3A019BB3A95008BC480 /* LaunchScreen.xib */ = {
@@ -435,40 +369,6 @@
 			};
 			name = Release;
 		};
-		1F46B3B519BB3A95008BC480 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = XBScrollPageControllerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = XBScrollPageControllerDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XBScrollPageControllerDemo.app/XBScrollPageController";
-			};
-			name = Debug;
-		};
-		1F46B3B619BB3A95008BC480 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = XBScrollPageControllerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = XBScrollPageControllerDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XBScrollPageControllerDemo.app/XBScrollPageController";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -486,15 +386,6 @@
 			buildConfigurations = (
 				1F46B3B219BB3A95008BC480 /* Debug */,
 				1F46B3B319BB3A95008BC480 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1F46B3B419BB3A95008BC480 /* Build configuration list for PBXNativeTarget "XBScrollPageControllerDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1F46B3B519BB3A95008BC480 /* Debug */,
-				1F46B3B619BB3A95008BC480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
