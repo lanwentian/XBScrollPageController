@@ -1,0 +1,2 @@
+# XBScrollPageController
+iOS分页控制器,只需传入标题数组和控制器类名数组即可
