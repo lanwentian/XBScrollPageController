@@ -1,8 +1,8 @@
 # XBScrollPageController
 iOS分页控制器,只需传入标题数组和控制器类名数组即可.
 ##特性
-* 使用简单
-* 增加了控制器缓存,并可自定义缓存时间,一段时间内未被重新展示的标签对应的控制器将被销毁
+* 直接继承XBScrollPageController控制器即可,所有属性及方法可通过点语法调用
+* 增加了控制器缓存,并可自定义缓存时间,一段时间内未被重新展示的标签对应的控制器将被销毁(详见属性说明)
 
 实现效果图如下:
 </br>
@@ -81,5 +81,5 @@ iOS分页控制器,只需传入标题数组和控制器类名数组即可.
 * reloadDataWith:(NSArray *)titleArray andSubViewdisplayClassNames:(NSArray *)classNames: 刷新整个界面,提供给某些应用场景比如从服务器获取tag组后需要更新界面.
 
 ##问题反馈
-QQ:329735967
-email:329735967@qq.com
+* QQ:329735967
+* email:329735967@qq.com
