@@ -12,6 +12,7 @@
 #define XBScreenWidth [UIScreen mainScreen].bounds.size.width
 #define XBScreenHeight [UIScreen mainScreen].bounds.size.height
 #define XBScreenBounds  [UIScreen mainScreen].bounds
+#define iOS7x ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0f)
 
 #ifdef DEBUG
 #define XBLog(...) NSLog(__VA_ARGS__)

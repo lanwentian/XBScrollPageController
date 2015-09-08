@@ -14,7 +14,7 @@
 @property (nonatomic,strong) UIFont *selectedTitleFont; /**< 选中状态标签字体  default is 18*/
 
 @property (nonatomic,strong) UIColor *normalTitleColor; /**< 正常(非选中)标签字体颜色  default is darkGrayColor*/
-@property (nonatomic,strong) UIColor *selectedTitleColor; /**< 选中状态标签字体颜色  default is redColor*/
+@property (nonatomic,strong) UIColor *selectedTitleColor; /**< 选中状态标签字体颜色及下方滑块颜色  default is redColor*/
 
 @property (nonatomic,assign) UIEdgeInsets tagViewSectionInset; /**< 整个标签view缩进 default is UIEdgeInsetsZero  */
 

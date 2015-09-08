@@ -106,8 +106,7 @@
 
 - (void)setSelectedIndex:(NSIndexPath *)selectedIndex
 {
-    [self updateSelectionIndicatorWithOldSelectedIndex:_selectedIndex
-                                        newNSIndexPath:selectedIndex];
+
     _selectedIndex = selectedIndex;
 }
 
@@ -220,20 +219,26 @@
     [super viewDidLoad];
 }
 
-- (void)viewWillLayoutSubviews
+- (void)viewDidLayoutSubviews
 {
-    [super viewWillLayoutSubviews];
+    [super viewDidLayoutSubviews];
     
     self.tagCollectionView.frame = CGRectMake(0, 0, XBScreenWidth, self.tagViewHeight);
     self.pageCollectionView.frame = CGRectMake(0, self.tagViewHeight, XBScreenWidth, XBScreenHeight - self.tagViewHeight);
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     self.selectedIndex = indexPath;
-    if (self.tagTitleModelArray.count != 0) {
-        [self collectionView:self.tagCollectionView didSelectItemAtIndexPath:indexPath];
-    }
+
+
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.tagTitleModelArray.count != 0) {
+        [self collectionView:self.tagCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    }
+}
 
 
 #pragma mark - UICollectionViewDataSource Protocol Methods
@@ -251,24 +256,30 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    
     NSInteger index = indexPath.item;
     if ([self isTagView:collectionView]) {     //标签
+        
         XBTagTitleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kTagCollectionViewCellIdentifier forIndexPath:indexPath];
+        
+        if (iOS7x) {
+            [self collectionView:collectionView willDisplayCell:cell forItemAtIndexPath:indexPath];
+        }
+        
         XBTagTitleModel *tagTitleModel = self.tagTitleModelArray[index];
         cell.tagTitleModel = tagTitleModel;
         cell.backgroundColor = self.backgroundColor;
         return cell;
     }else{                                              //页面
         XBPageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPageCollectionViewCellIdentifier forIndexPath:indexPath];
-        
-        NSString *displayClassName;
-
-        if (self.displayClassNames.count == 1) {
-            displayClassName = [self.displayClassNames firstObject];
-        }else
-        {
-            displayClassName = self.displayClassNames[index];
+        if (iOS7x) {
+            [self collectionView:collectionView willDisplayCell:cell forItemAtIndexPath:indexPath];
         }
+
+
+
+
         return cell;
         
     }
@@ -303,7 +314,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self isTagView:collectionView]) {                     //选中某个标签
-        
+        [self updateSelectionIndicatorWithOldSelectedIndex:self.selectedIndex
+                                            newNSIndexPath:indexPath];
         self.selectedIndex = indexPath;
         [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
         [self.pageCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionRight animated:NO];
@@ -354,7 +366,7 @@
 
     }
 }
-//即将展示的Cell
+//即将展示的Cell iOS8 available
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(id)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self isTagView:collectionView]) {
@@ -375,7 +387,7 @@
         [self saveCachedVC:cachedViewController ByIndexPath:indexPath];
         [self addChildViewController:cachedViewController];
         [cell configCellWithController:cachedViewController];
-//        XBLog(@"%@",cachedViewController);
+        XBLog(@"%@",cachedViewController);
         
         }
 }
@@ -391,6 +403,10 @@
         //从缓存中取出instaceController
         UIViewController *cachedViewController = [self getCachedVCByIndexPath:indexPath];
 
+        if (!cachedViewController) {
+            return;
+        }
+        
         //更新缓存时间
         [self saveCachedVC:cachedViewController ByIndexPath:indexPath];
         
